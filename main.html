@@ -6,7 +6,41 @@
   </head>
 
   <body>
-    <!-- write the body here -->
+    <form>
+        <input type="number" id="age">
+        <input type="text" id="name">
+        <button type="submit" id="btn">Submit</button>
+    </form>
+
+
+    <script>
+        const age = document.getElementById('age');
+        const name = document.getElementById('name');
+        const submitBtn = document.getElementById('btn');
+
+        submitBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (name.value === "" || age.value === "") {
+                alert("Please enter valid details.");
+            }
+            console.log(age.value);
+
+            let myPromise = new Promise((resolve, reject) => {
+                if (age.value > 18) {
+                    setTimeout(() => {
+                        resolve("Welcome, . You can vote.");
+                    }, 4000);
+                } else {
+                    setTimeout(() => {
+                        reject("Oh sorry . You aren't old enough.");
+                    }, 4000);
+                }
+            });
+            myPromise
+                .then(message => alert(message))   // if resolved
+                .catch(error => alert(error));     // if rejected
+        });
+    </script>
 
     <script type="text/javascript" src="./script.js"></script>
   </body>
